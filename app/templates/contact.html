@@ -3,12 +3,17 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+{% extends "base.html" %}
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact.css') }}"/>
+{% endblock%}
+{% block main %}
 <title>Contact Form</title>
 <body>
     <div class="contact">
         <div class="contain">
             <h1>-Mail-To v2.0-</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form class="well form-horizontal" action="/sendmail" method="post"  id="contact_form">
         <input name="action" value="submit" type="hidden"> Fr:<br>
         <input name="name" size="50" type="text"><br> To:<br>
         <input name="name" size="50" type="text"><br> Subject:<br>
@@ -22,5 +27,5 @@
     <div class="foot"></div>
 
 </body>
-
+{% endblock %}
 </html>

@@ -6,7 +6,11 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
+import smtplib
+
+#app = Flask(__name__)
+app.secret_key = 'some_secret'
 
 
 ###
@@ -24,11 +28,47 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-@app.route('/contact','POST','GET')
-def contact():
-    """Render the website's contact page."""
-    return render_template('contact.html', name="Contact")
 
+@app.route('/contact/')
+def contact():
+    """Render website's contact page."""
+    return render_template('contact.html')
+
+@app.route('/about/')
+def about():
+    """Render the website's about page."""
+    return render_template('about.html', name="Mary Jane")
+
+@app.route('/sendmail', methods=['POST'])
+def send_email():
+    """Sends the users message"""
+    #send_mail(request.form['name'], request.form['email'], request.form['subject'], request.form['message'])
+
+    flash('Your message was successfully sent')
+    return redirect(url_for('home'))
+
+def send_mail(from_name, from_addr, subject, msg):
+    """Sends the users message"""
+    to_name = 'Contact Us'
+    to_addr = 'fakeemail@gmail.com'
+    
+    message = """From: {} <{}>
+    To: {} <{}> 
+    Subject: {}
+    {}
+    """
+    message_to_send = message.format(from_name, from_addr, to_name, to_addr, subject, msg)
+
+    # Credentials
+    username = 'inphoqusnow@gmail.com'
+    password = 'apassword'
+
+    # Mail send
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
+    server.login(username, password)
+    server.sendmail(from_addr, to_addr, message_to_send)
+    server.quit() 
 
 ###
 # The functions below should be applicable to all Flask apps.
