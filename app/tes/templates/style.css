@@ -1,0 +1,51 @@
+body
+{
+    background-image: url("bg.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+h1
+{
+    text-align: center;
+    color: deepskyblue;
+}
+
+.contact
+{
+    margin-left: 30%;
+    margin-top: 5%;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    width: 40%;
+    height: 500px;
+    background-color: ghostwhite;
+    border-radius: 8px;
+    opacity: 0.9;
+}
+.contain
+{
+    margin-top: 10%;
+    padding-bottom: 5px;
+    opacity: 5;
+}
+form
+{
+    width:40%;
+    margin-left: 50px;
+    
+}
+.button
+{
+    width: 80px;
+    height: 40px;
+    background-color: deepskyblue;
+    border: none;
+    text-align: center;
+    display: inline;
+    border-radius: 25px;
+
+}
+.button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
